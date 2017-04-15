@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>下拉刷新</title>
+    <style>
+        body{
+            margin:0px auto;
+            padding:0px;
+        }
+        *{
+            margin:0px auto;
+            padding:0px;
+        }
+        #mainContent{
+            margin-top:20px;
+            width:200px;
+            height:300px;
+            border:1px solid #ccc;
+            overflow:scroll;
+        }
+
+        #slideDown1{
+            width:100%;
+            height:20px;
+            background:#3CF;
+        }
+        #slideDown1 p{
+            text-align:center;
+            font-size:14px;
+        }
+        li{
+            list-style-type:none;
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="mainContent">
+    <div class="myContent">
+        <ul>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+            <li>item1-item-1-itemt1</li>
+        </ul>
+    </div>
+    <div id="slideDown1" style="display:none">
+        <p>加载中，请稍后....</p>
+    </div>
+</div>
+<script>
+    var obj=document.getElementById("mainContent");
+    var sd=document.getElementById("slideDown1");
+    //滚动条事件
+    obj.onscroll=function () {
+        //最主要的就是要获取滚动条的距离，滚动的距离
+        /*
+         scrollTop:滚动条距离顶部的距离
+         scrollHeight:滚动条整个的内容的高度
+         clientHeight：滚动的内容显示出来的距离
+         */
+        //console.log(obj.scrollTop+obj.scrollHeight==obj.clientHeight);
+        if(obj.scrollTop + obj.clientHeight==obj.scrollHeight){
+            //意味着滚动条已经到达底部
+            sd.style.display="block";
+            window.setTimeout(add,1000);
+        }
+    }
+
+    function add() {
+        var newDiv=document.createElement("div");
+        var ul=document.createElement("ul");
+        for(var i=0;i<16;i++){
+            var li=document.createElement("li");
+            li.innerHTML="item"+i+"-item-"+i+"-item"+i;
+            ul.appendChild(li);
+        }
+        newDiv.appendChild(ul);
+        obj.insertBefore(newDiv,sd);
+    }
+</script>
+</body>
+</html>
